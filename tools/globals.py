@@ -1,3 +1,7 @@
+ENGINE_NAME = "calliope"
+PROJECT_NAME = "calliopeeditor"
+TOOLS_DIR = "tools"
+
 VERSION_MAJOR = 0
 VERSION_MINOR = 0
 VERSION_REVISION = 2
