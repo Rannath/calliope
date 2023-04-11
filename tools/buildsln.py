@@ -19,3 +19,5 @@ if globals.IsLinux():
 
 if globals.IsMac():
     ret = subprocess.call(["make", "config={}".format(CONFIG)])
+
+sys.exit(ret)
