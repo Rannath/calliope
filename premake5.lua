@@ -11,11 +11,83 @@ workspace "calliope"
 tdir = "bin/%{cfg.buildcfg}/%{prj.name}"
 odir = "bin-obj/%{cfg.buildcfg}/%{prj.name}"
 
+project "calliope"
+    location "calliope"
+    kind "StaticLib"
+    language "C++"
+    cppdialect "C++17"
+    staticruntime "on"
+
+    targetdir(tdir)
+    objdir(odir)
+
+    files
+    {
+        "%{prj.location}/include/**.hpp",
+        "%{prj.location}/src/**.hpp",
+        "%{prj.location}/src/**.cpp",
+    }
+
+    externalincludedirs
+    {
+        "%{prj.location}/include/clp"
+    }
+
+    flags
+    {
+        "FatalWarnings"
+    }
+
+    filter { "system:windows", "configurations:*" }
+        systemversion "latest"
+
+        defines
+        {
+            "CLP_PLATFORM_WINDOWS"
+        }
+    
+    filter { "system:maxosx", "configurations:*" }
+        xcodebuildsettings
+        {
+            ["MACOSX_DEPLOYMENT_TARGET"] = 10.15,
+            ["UseModernBuildSystem"] = "NO"
+        }
+
+        defines
+        {
+            "CLP_PLATFORM_MAC"
+        }
+    
+    filter { "system:linux", "configurations:*" }
+        defines
+        {
+            "CLP_PLATFORM_LINUX"
+        }
+    
+    filter "configurations:Debug"
+        defines
+        {
+            "CLP_CONFIG_DEBUG"
+        }
+        runtime "Debug"
+        symbols "on"
+
+    filter "configurations:Release"
+        defines
+        {
+            "CLP_CONFIG_RELEASE"
+        }
+        runtime "Release"
+        symbols "off"
+        optimize "on"
+
 project "calliopeeditor"
-    location "clp_editor"
+    location "calliopeeditor"
     kind "ConsoleApp"
     language "C++"
     cppdialect "C++17"
+    staticruntime "on"
+    links "calliope"
 
     targetdir(tdir)
     objdir(odir)
@@ -26,7 +98,55 @@ project "calliopeeditor"
         "%{prj.location}/src/**.cpp",
     }
 
+    externalincludedirs
+    {
+        "calliope/include"
+    }
+
     flags
     {
         "FatalWarnings"
     }
+
+     filter { "system:windows", "configurations:*" }
+        systemversion "latest"
+
+        defines
+        {
+            "CLP_PLATFORM_WINDOWS"
+        }
+    
+    filter { "system:maxosx", "configurations:*" }
+        xcodebuildsettings
+        {
+            ["MACOSX_DEPLOYMENT_TARGET"] = 10.15,
+            ["UseModernBuildSystem"] = "NO"
+        }
+
+        defines
+        {
+            "CLP_PLATFORM_MAC"
+        }
+    
+    filter { "system:linux", "configurations:*" }
+        defines
+        {
+            "CLP_PLATFORM_LINUX"
+        }
+    
+    filter "configurations:Debug"
+        defines
+        {
+            "CLP_CONFIG_DEBUG"
+        }
+        runtime "Debug"
+        symbols "on"
+
+    filter "configurations:Release"
+        defines
+        {
+            "CLP_CONFIG_RELEASE"
+        }
+        runtime "Release"
+        symbols "off"
+        optimize "on"
