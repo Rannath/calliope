@@ -1,5 +1,3 @@
-MAJOR = 0
-MINOR = 0
-REVISION = 1
+import globals
 
-print("Calliope tools - v{}.{}.{}".format(MAJOR, MINOR, REVISION))
+print("Calliope tools - v{}.{}.{}".format(globals.VERSION_MAJOR, globals.VERSION_MINOR, globals.VERSION_REVISION))
