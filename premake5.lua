@@ -11,6 +11,10 @@ workspace "calliope"
 tdir = "bin/%{cfg.buildcfg}/%{prj.name}"
 odir = "bin-obj/%{cfg.buildcfg}/%{prj.name}"
 
+-- External Dependancies
+externals = {}
+externals["sdl2"] = "external/sdl2"
+
 project "calliope"
     location "calliope"
     kind "StaticLib"
@@ -30,7 +34,8 @@ project "calliope"
 
     externalincludedirs
     {
-        "%{prj.location}/include/clp"
+        "%{prj.location}/include/clp",
+        "%{externals.sdl2}/include"
     }
 
     flags
@@ -114,6 +119,16 @@ project "calliopeeditor"
         defines
         {
             "CLP_PLATFORM_WINDOWS"
+        }
+
+        libdirs
+        {
+            "%{externals.sdl2}/lib"
+        }
+
+        links
+        {
+            "SDL2"
         }
     
     filter { "system:maxosx", "configurations:*" }
