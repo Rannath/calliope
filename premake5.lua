@@ -148,6 +148,11 @@ project "calliopeeditor"
         {
             "CLP_PLATFORM_LINUX"
         }
+
+        links
+        {
+            "SDL2"
+        }
     
     filter "configurations:Debug"
         defines
