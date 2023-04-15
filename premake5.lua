@@ -14,6 +14,11 @@ odir = "bin-obj/%{cfg.buildcfg}/%{prj.name}"
 -- External Dependancies
 externals = {}
 externals["sdl2"] = "external/sdl2"
+externals["spdlog"] = "external/spdlog"
+externals["glad"] = "external/glad"
+
+--Process Glad before anything else
+include "external/glad"
 
 project "calliope"
     location "calliope"
@@ -35,12 +40,19 @@ project "calliope"
     externalincludedirs
     {
         "%{prj.location}/include/clp",
-        "%{externals.sdl2}/include"
+        "%{externals.sdl2}/include",
+        "%{externals.spdlog}/include",
+        "%{externals.glad}/include"
     }
 
     flags
     {
         "FatalWarnings"
+    }
+
+    defines
+    {
+        GLFW_INCLUDE_NONE --Ensure glad doesn't include glfw
     }
 
     filter { "system:windows", "configurations:*" }
@@ -128,7 +140,8 @@ project "calliopeeditor"
 
         links
         {
-            "SDL2"
+            "SDL2",
+            "glad"
         }
     
     filter { "system:maxosx", "configurations:*" }
@@ -142,11 +155,23 @@ project "calliopeeditor"
         {
             "CLP_PLATFORM_MAC"
         }
+
+        links
+        {
+            "SDL2.framework",
+            "glad"
+        }
     
     filter { "system:linux", "configurations:*" }
         defines
         {
             "CLP_PLATFORM_LINUX"
+        }
+
+        links
+        {
+            "SDL2",
+            "glad"
         }
     
     filter "configurations:Debug"

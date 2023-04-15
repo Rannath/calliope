@@ -2,10 +2,7 @@
 #include <clp/engine.hpp>
 
 int main(){
-    std::cout << "Hello, Youtube!" << std::endl;
-    clp::GetInfo();
-
-    clp::Initialize();
-    clp::Shutdown();
-    return 0;
+  auto& engine = clp::Engine::Instance();
+  engine.Run();
+  return 0;
 }
