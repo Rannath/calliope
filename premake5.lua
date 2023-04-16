@@ -39,7 +39,7 @@ project "calliope"
 
     externalincludedirs
     {
-        "%{prj.location}/include/clp",
+        "%{prj.location}/include",
         "%{externals.sdl2}/include",
         "%{externals.spdlog}/include",
         "%{externals.glad}/include"

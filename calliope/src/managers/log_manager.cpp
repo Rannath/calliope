@@ -1,6 +1,6 @@
-#include <managers/log_manager.hpp>
+#include <clp/managers/log_manager.hpp>
 
-#include <log.hpp>
+#include <clp/log.hpp>
 #include <spdlog/sinks/stdout_color_sinks.h>
 
 #include <memory>

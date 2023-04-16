@@ -1,5 +1,5 @@
 #pragma once
-#include <core/config.hpp>
+#include <clp/core/config.hpp>
 #include <spdlog/spdlog.h>
 
 constexpr const char* loggerName = "CalliopeLogger";
