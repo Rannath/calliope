@@ -2,9 +2,8 @@
 
 class Sandbox : public Calliope::Application {
 public:
-  Sandbox() {
-  }
-  ~Sandbox() override {}
+  Sandbox() { }
+  ~Sandbox() override { }
 
 private:
 };

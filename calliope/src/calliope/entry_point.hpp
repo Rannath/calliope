@@ -9,9 +9,6 @@ namespace Calliope {
 }
 
 int main(int /*argc*/, char** /*argv*/) {
-  Calliope::CoreLogger->Warn("Initialized Log!");
-  int a = 5;
-  Calliope::ClientLogger->Info("Hello! var = {0}", a);
   auto app = Calliope::CreateApplication();
 
   app->Run();
