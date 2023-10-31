@@ -2,6 +2,7 @@
 
 #include "calliope/core.hpp"
 #include "calliope/application.hpp"
+#include "calliope/logger.hpp"
 
 /******************************************************************************
 *

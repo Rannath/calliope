@@ -27,10 +27,22 @@
     <ClInclude Include="src\calliope\entry_point.hpp">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="src\calliope\logger.hpp">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="src\calliope\logger\ansi_console_logger.hpp">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="src\calliope\application.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="src\calliope\logger\ansi_console_logger.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="cpp.hint" />
   </ItemGroup>
 </Project>
