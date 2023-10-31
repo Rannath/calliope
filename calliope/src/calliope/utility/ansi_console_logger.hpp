@@ -8,7 +8,7 @@
 namespace Calliope::Utility {
   class CALLIOPE_API AnsiConsoleLogger : public Logger {
   public:
-    AnsiConsoleLogger(std::string_view name) : name_{ name } {}
+    AnsiConsoleLogger(std::string name) : name_{ name.data() } {}
 
     // Inherited via Logger
     void Trace(Message message) override {
@@ -38,7 +38,7 @@ namespace Calliope::Utility {
     constexpr static int RED = 31;
     constexpr static int CYAN = 36;
 
-    std::string name_;
+    const char* name_;
 
     void LogConsole(Message message, int colour) {
       auto start = floor<std::chrono::seconds>(std::chrono::system_clock::now());
