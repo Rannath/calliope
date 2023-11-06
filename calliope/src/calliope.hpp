@@ -1,7 +1,7 @@
 #pragma once
 
-#include "calliope/core.hpp"
 #include "calliope/application.hpp"
+#include "calliope/layer.hpp"
 #include "calliope/logger.hpp"
 
 /******************************************************************************

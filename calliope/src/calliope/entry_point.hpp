@@ -1,6 +1,6 @@
 #pragma once
 #include "application.hpp"
-#include "logger.hpp"
+#include "pch.hpp"
 
 #ifdef CLP_PLATFORM_WINDOWS
 

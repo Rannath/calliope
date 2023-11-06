@@ -10,6 +10,10 @@
   #error Calliope only supports Windows.
 #endif //CLP PLATFORM_WINDOWS
 
-namespace Calliope {
-
-}
+#ifdef CLP_ENABLE_ASSERTS
+#define CLP_ASSERT(x, ...) { if(!(x)){ ::Calliope::ClientLogger->Error("Assertion Failed {}", __VA_ARGS__); __debugbreak(); } }
+#define CLP_CORE_ASSERT(x, ...) { if(!(x)){ ::Calliope::CoreLogger->Error("Assertion Failed {}", __VA_ARGS__); __debugbreak(); } }
+#else
+#define CLP_ASSERT(x, ...)
+#define CLP_CORE_ASSERT(x, ...)
+#endif
