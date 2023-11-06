@@ -23,7 +23,7 @@ namespace Calliope {
     bool OnWindowClose(WindowCloseEvent& e);
 
     std::unique_ptr<Window> window_;
-    bool running_;
+    bool running_ = true;
     LayerStack layer_stack_;
   };
 

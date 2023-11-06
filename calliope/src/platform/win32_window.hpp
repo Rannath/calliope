@@ -6,6 +6,7 @@
 namespace Calliope {
   class Win32Window : public Window {
   public:
+    Win32Window() {}
     explicit Win32Window(const WindowProps& props);
     ~Win32Window() override;
 
@@ -25,6 +26,7 @@ namespace Calliope {
     void SetEventCallback(const EventCallbackFn& callback) override;
     void SetVSync(bool enabled) override;
     void IsVSync() override;
+
   private:
     virtual void Init(const WindowProps& props);
     virtual void Shutdown();
@@ -33,7 +35,8 @@ namespace Calliope {
     template<typename TEvent, typename... TArgs>
     friend void Broadcast(HWND hwnd, TArgs&&... args);
 
-    HWND hwnd_;
+    HWND hwnd_ = nullptr;
+    HDC hdc_ = nullptr;
 
     struct WindowData {
       std::string title;
@@ -41,6 +44,6 @@ namespace Calliope {
       bool vsync;
 
       EventCallbackFn event_callback;
-    } data_;
+    } data_{};
   };
 }

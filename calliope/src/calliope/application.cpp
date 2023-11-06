@@ -3,6 +3,8 @@
 
 #include "event/application_events.hpp"
 
+#include <glad/glad.h>
+
 #define LAMBDA(x, y) [this](x& e) { return y(e); }
 
 namespace Calliope {
@@ -38,7 +40,9 @@ namespace Calliope {
   }
 
   void Application::Run() {
+    glClearColor(1, 0, 1, 1);
     while (running_) {
+      glClear(GL_COLOR_BUFFER_BIT);
 
       for (auto* layer : layer_stack_)
         layer->OnUpdate();
