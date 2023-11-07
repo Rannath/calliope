@@ -37,6 +37,7 @@ namespace Calliope {
 
     HWND hwnd_ = nullptr;
     HDC hdc_ = nullptr;
+    HGLRC hglrc_ = nullptr;
 
     struct WindowData {
       std::string title;

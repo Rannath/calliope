@@ -19,8 +19,11 @@ namespace Calliope {
     void PushLayer(Layer* layer);
     void PushOverlay(Layer* layer);
 
+  protected:
+    inline Window& window() { return *window_; }
+
   private:
-    bool OnWindowClose(WindowCloseEvent& e);
+    bool OnEvent(WindowCloseEvent& e);
 
     std::unique_ptr<Window> window_;
     bool running_ = true;

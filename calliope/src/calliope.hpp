@@ -4,6 +4,8 @@
 #include "calliope/layer.hpp"
 #include "calliope/logger.hpp"
 
+#include "calliope/imgui/imgui_layer.hpp"
+
 /******************************************************************************
 *
 * Include the entry point so the client doesn't have to.

@@ -19,6 +19,7 @@ class Sandbox : public Calliope::Application {
 public:
   Sandbox() {
     PushLayer(new ExampleLayer());
+    PushOverlay(new Calliope::ImGuiLayer{ (float)window().GetWidth(), (float)window().GetHeight() });
   }
   ~Sandbox() override { }
 

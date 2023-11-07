@@ -34,6 +34,7 @@ namespace Calliope {
   }
 
   Win32Window::~Win32Window() {
+    Shutdown();
   }
 
   Win32Window::Win32Window(Win32Window&& other) noexcept {
@@ -98,7 +99,7 @@ namespace Calliope {
     CLP_CORE_ASSERT(hwnd_ != nullptr, "Could not Create Window");
 
     hdc_ = GetDC(hwnd_);
-    auto rc = MakeGlContext(hdc_);
+    hglrc_ = MakeGlContext(hdc_);
 
     SetVSync(true);
 
@@ -106,6 +107,9 @@ namespace Calliope {
   }
 
   void Win32Window::Shutdown() {
+    wglMakeCurrent(NULL, NULL);
+    wglDeleteContext(hglrc_);
+    ReleaseDC(hwnd_, hdc_);;
     DestroyWindow(hwnd_);
   }
 

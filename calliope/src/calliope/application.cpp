@@ -5,8 +5,6 @@
 
 #include <glad/glad.h>
 
-#define LAMBDA(x, y) [this](x& e) { return y(e); }
-
 namespace Calliope {
   Application::Application() {
     window_ = Window::Create();
@@ -15,7 +13,9 @@ namespace Calliope {
 
   void Application::OnEvent(Event& e) {
     EventDispatcher d{ e };
-    d.Dispatch<WindowCloseEvent>(LAMBDA(WindowCloseEvent, OnWindowClose));
+#define DISPATCH(x) d.Dispatch<x>([this](x& e) { return OnEvent(e); })
+    DISPATCH(WindowCloseEvent);
+#undef DISPATCH
 
     for (auto it = layer_stack_.end(); it != layer_stack_.begin();) {
       (*--it)->OnEvent(e);
@@ -25,19 +25,20 @@ namespace Calliope {
 
   void Application::PushLayer(Layer* layer) {
     layer_stack_.PushLayer(layer);
+    layer->OnAttach();
   }
 
   void Application::PushOverlay(Layer* layer) {
     layer_stack_.PushOverlay(layer);
+    layer->OnAttach();
   }
 
-  bool Application::OnWindowClose(WindowCloseEvent& e) {
+  bool Application::OnEvent(WindowCloseEvent& e) {
     running_ = false;
     return true;
   }
 
-  Application::~Application() {
-  }
+  Application::~Application() { }
 
   void Application::Run() {
     glClearColor(1, 0, 1, 1);
@@ -51,5 +52,3 @@ namespace Calliope {
     }
   }
 }
-
-#undef LAMBDA
